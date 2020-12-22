@@ -1,0 +1,3 @@
+include ':TheShareMaster'
+include ':app'
+rootProject.name = "ShareMaster"

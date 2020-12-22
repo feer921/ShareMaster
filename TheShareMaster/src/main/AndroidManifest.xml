@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="common.share">
+
+    <!-- 网络权限：
+       1、对于微信SDK来说：其中网络权限如果没有使用扫码登录功能非必要
+       -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+<!--    // 在应用的AndroidManifest.xml添加如下<queries>标签
+Android 11 加强了隐私保护策略，引入了大量变更和限制，其中一个重要变更 —— 软件包可见性 ，
+将会导致第三方应用通过微信OpenSDK的接口无法正常拉起微信，从而无法使用微信的全部功能，
+包括但不限于分享消息到微信、拉起小程序等功能。
+特别需要注意的是，Android11的该变更只会影响到升级 targetSdkVersion=30 的应用，未升级的应用暂不受影响
+-->
+    <queries>
+        <package android:name="com.tencent.mm" />   <!-- 指定微信包名 -->
+    </queries>
+
+    <application>
+        <activity android:name=".core.AEntryHandleActivity"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:taskAffinity="${applicationId}"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"
+            android:configChanges="fontScale|keyboardHidden|orientation|screenSize|layoutDirection|screenLayout"
+            />
+    </application>
+</manifest>
